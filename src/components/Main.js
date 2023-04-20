@@ -1,7 +1,7 @@
 import Card from './Card.js';
 import { useState, useEffect } from 'react';
 import React from 'react';
-import api from '../utilits/Api';
+import api from '../utilits/Api.js';
 
 function Main(props) {
 
