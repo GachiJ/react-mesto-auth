@@ -20,15 +20,15 @@ function App() {
   }
 
   function handleEditAvatarClick() {
-    setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen)
+    setIsEditAvatarPopupOpen(true)
   }
 
   function handleEditProfileClick() {
-    setIsEditProfilePopupOpen(!isEditProfilePopupOpen)
+    setIsEditProfilePopupOpen(true)
   }
 
   function handleAddPlaceClick() {
-    setIsAddPlacePopupOpen(!isAddPlacePopupOpen)
+    setIsAddPlacePopupOpen(true)
   }
 
   function closeAllPopups() {
@@ -50,7 +50,10 @@ function App() {
           />
           <Footer />
 
-          <PopupWithForm name='type_edit-profile' title='Редактировать профиль' isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
+          <PopupWithForm name='type_edit-profile'
+            title='Редактировать профиль'
+            isOpen={isEditProfilePopupOpen}
+            onClose={closeAllPopups}>
             <input type="text" className="popup__input popup__input_type_name" name="username" id="input-name"
               placeholder="Введите имя" required minLength="2" maxLength="40" />
             <span className="error" id="input-name-error"></span>
@@ -59,7 +62,10 @@ function App() {
             <span className="error" id="input-info-error"></span>
             <button className="popup__button-submit" type="submit">Сохранить</button></PopupWithForm>
 
-          <PopupWithForm name='type_add-photo' title='Новое место' isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
+          <PopupWithForm name='type_add-photo'
+            title='Новое место'
+            isOpen={isAddPlacePopupOpen}
+            onClose={closeAllPopups}>
             <input type="text" className="popup__input popup__input_type_name" name="username" id="input-name"
               placeholder="Введите имя" required minLength="2" maxLength="40" />
             <span className="error" id="input-name-error"></span>
@@ -68,7 +74,11 @@ function App() {
             <span className="error" id="input-info-error"></span>
             <button className="popup__button-submit" type="submit">Создать</button></PopupWithForm>
 
-          <PopupWithForm name='edit_avatar' title='Обновить аватар' isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
+          <PopupWithForm
+            name='edit_avatar'
+            title='Обновить аватар'
+            isOpen={isEditAvatarPopupOpen}
+            onClose={closeAllPopups}>
             <input type="url" className="popup__input popup__input_avatar_url" name="avatar" id="input-avatar-url"
               placeholder="Ссылка на картинку" required pattern="https?://.+" />
             <span className="error" id="input-avatar-url-error"></span>
@@ -76,7 +86,9 @@ function App() {
 
           <PopupWithForm name='confirm_delete' title='Вы уверены?' onClose={closeAllPopups}></PopupWithForm>
 
-          <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+          <ImagePopup
+            card={selectedCard}
+            onClose={closeAllPopups} />
         </div>
       </div>
     </>
