@@ -4,7 +4,7 @@ class Api {
     this._headers = headers;
   }
 
-  _checkRequest(res) {
+  _checkResponse(res) {
     if (res.ok) {
       return res.json()
     } else {
@@ -16,7 +16,7 @@ class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
-      .then(res => this._checkRequest(res));
+      .then(res => this._checkResponse(res));
   }
 
   setUserInfo({ name, about, avatar }) {
@@ -29,14 +29,14 @@ class Api {
         avatar: avatar
       })
     })
-      .then(res => this._checkRequest(res))
+      .then(res => this._checkResponse(res))
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers
     })
-      .then(res => this._checkRequest(res))
+      .then(res => this._checkResponse(res))
   }
 
   addNewCard({ name, link }) {
@@ -48,7 +48,7 @@ class Api {
         link: link,
       })
     })
-      .then(res => this._checkRequest(res))
+      .then(res => this._checkResponse(res))
   }
 
   changeAvatar({ avatar }) {
@@ -59,7 +59,7 @@ class Api {
         avatar: avatar
       })
     })
-      .then(res => this._checkRequest(res))
+      .then(res => this._checkResponse(res))
   }
 
   changeLikeCardStatus(id, isLiked) {
@@ -68,7 +68,7 @@ class Api {
       method: method,
       headers: this._headers
     })
-      .then(res => this._checkRequest(res))
+      .then(res => this._checkResponse(res))
   }
 
   deleteCard(id) {
@@ -76,7 +76,7 @@ class Api {
       method: 'DELETE',
       headers: this._headers
     })
-      .then(res => this._checkRequest(res))
+      .then(res => this._checkResponse(res))
   }
 
   cardLike(id) {
@@ -84,7 +84,7 @@ class Api {
       method: 'PUT',
       headers: this._headers
     })
-      .then(res => this._checkRequest(res))
+      .then(res => this._checkResponse(res))
   }
 
   deleteCardLike(id) {
@@ -92,7 +92,7 @@ class Api {
       method: 'DELETE',
       headers: this._headers
     })
-      .then(res => this._checkRequest(res))
+      .then(res => this._checkResponse(res))
   }
 }
 

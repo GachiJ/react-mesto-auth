@@ -71,17 +71,17 @@ function App() {
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
       setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-    });
+    })
+    .catch((err) => console.log(err))
   }
 
   function handleCardDelete(card) {
     api.deleteCard(card._id)
       .then(() => {
-        const newCard = cards.filter((item) => item._id !== card._id)
-        setCards(newCard)
-
+        setCards((newCard) => newCard.filter((item) => item._id !== card._id))
       })
   }
+  
 
   function handleCardClick(selectedCard) {
     setSelectedCard(selectedCard)
@@ -121,11 +121,20 @@ function App() {
           />
           <Footer />
 
-          <EditProfilePopup  onUpdateUser={handleUpdateUser}  isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
+          <EditProfilePopup  
+          onUpdateUser={handleUpdateUser}  
+          isOpen={isEditProfilePopupOpen} 
+          onClose={closeAllPopups} />
 
-          <AddPlacePopup  onAddPlace={handleAddPlaceSubmit} isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}/>
+          <AddPlacePopup  
+          onAddPlace={handleAddPlaceSubmit} 
+          isOpen={isAddPlacePopupOpen} 
+          onClose={closeAllPopups}/>
 
-          <EditAvatarPopup onUpdateAvatar={handleUpdateAvatar} isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
+          <EditAvatarPopup 
+          onUpdateAvatar={handleUpdateAvatar} 
+          isOpen={isEditAvatarPopupOpen} 
+          onClose={closeAllPopups} />
 
           <PopupWithForm name='confirm_delete' title='Вы уверены?' onClose={closeAllPopups}></PopupWithForm>
 

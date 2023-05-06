@@ -2,24 +2,31 @@ import PopupWithForm from "./PopupWithForm"
 import React from 'react';
 
 
-function AddPlacePopup(props) {
+function AddPlacePopup({onAddPlace, isOpen, onClose, }) {
   const nameRef = React.useRef();
   const linkRef = React.useRef();
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    props.onAddPlace({
+    onAddPlace({
       name: nameRef.current.value,
       link: linkRef.current.value,
     })
+
+    
   }
+
+  React.useEffect(() => {
+    nameRef.current.value = '';
+    linkRef.current.value = '';
+  }, [isOpen, onClose])
 
   return (
     <PopupWithForm name='type_add-photo'
       title='Новое место'
-      isOpen={props.isOpen}
-      onClose={props.onClose}
+      isOpen={isOpen}
+      onClose={onClose}
       onSubmit={handleSubmit}
     >
       <input type="text"
