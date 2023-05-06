@@ -19,13 +19,13 @@ class Api {
       .then(res => this._checkRequest(res));
   }
 
-  setUserInfo({ username, userinfo, avatar }) {
+  setUserInfo({ name, about, avatar }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        name: username,
-        about: userinfo,
+        name: name,
+        about: about,
         avatar: avatar
       })
     })
@@ -58,6 +58,15 @@ class Api {
       body: JSON.stringify({
         avatar: avatar
       })
+    })
+      .then(res => this._checkRequest(res))
+  }
+
+  changeLikeCardStatus(id, isLiked) {
+    const method = isLiked ? 'PUT' : 'DELETE';
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: method,
+      headers: this._headers
     })
       .then(res => this._checkRequest(res))
   }
