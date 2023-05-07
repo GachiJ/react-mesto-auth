@@ -20,7 +20,7 @@ function AddPlacePopup({onAddPlace, isOpen, onClose, }) {
   React.useEffect(() => {
     nameRef.current.value = '';
     linkRef.current.value = '';
-  }, [isOpen, onClose])
+  }, [isOpen])
 
   return (
     <PopupWithForm name='type_add-photo'

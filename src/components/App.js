@@ -80,6 +80,7 @@ function App() {
       .then(() => {
         setCards((newCard) => newCard.filter((item) => item._id !== card._id))
       })
+      .catch((err) => console.log(err))
   }
   
 
