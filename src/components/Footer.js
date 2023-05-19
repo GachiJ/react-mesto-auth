@@ -1,8 +1,13 @@
+import { Route, Routes } from "react-router-dom";
+
 function Footer() {
   return (
-    <footer className="footer">
-      <p className="footer__copyright">&copy; {new Date().getFullYear()} Mesto Russia</p>
-    </footer>
+    <Routes>
+      <Route index element={<footer className="footer">
+        <p className="footer__copyright">&copy; {new Date().getFullYear()} Mesto Russia</p>
+      </footer>}
+      />
+    </Routes>
   )
 }
 

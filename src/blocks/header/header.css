@@ -1,10 +1,12 @@
 .header {
-  display: block;
+  display: flex;
+  justify-content: space-between;
   padding-top: 28px;
   padding-bottom: 28px;
   margin: 0 auto;
   border: none;
   border-bottom: 1px solid rgba(84, 84, 84, .7);
+  border-top: 1px solid rgba(84, 84, 84, .7);
   max-width: 880px;
 }
 
