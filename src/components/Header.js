@@ -30,8 +30,6 @@ function Header({ onSignOut, headerEmail, isOpen, onMenuOpen }) {
                 onClick={onMenuOpen}
               />
 
-
-
               <nav className="header__nav">
                 <p className="header__email">{headerEmail}</p>
                 <Link to="sign-in" className="header__exit" onClick={onSignOut}>
