@@ -1,6 +1,6 @@
 
 
-function InfoTooltip({ name, isOpen, onClose, isSuccess }) {
+function InfoTooltip({ name, isOpen, onClose, isSuccess, textIsSuccessTrue, textIsSuccessFalse }) {
   return (
     <>
       <div className={`popup popup_${name} ${isOpen ? 'popup_opened' : ''}`}>
@@ -13,8 +13,8 @@ function InfoTooltip({ name, isOpen, onClose, isSuccess }) {
           ></div>
           <h2 className="popup__success-title">
             {isSuccess
-              ? "Вы успешно зарегистрировались!"
-              : "Что-то пошло не так! Попробуйте ещё раз."}
+              ? textIsSuccessTrue
+              : textIsSuccessFalse}
           </h2>
         </div>
       </div>

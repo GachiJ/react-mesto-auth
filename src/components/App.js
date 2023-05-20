@@ -1,4 +1,3 @@
-import '../pages/index.css';
 import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
@@ -36,14 +35,18 @@ function App() {
 
 
 
+
   useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getInitialCards()])
-      .then(([userData, cardsData]) => {
-        setCards(cardsData)
-        setCurrentUser(userData)
-      })
-      .catch((err) => console.log(err))
-  }, [])
+    if (isLoggedIn) {
+      Promise.all([api.getUserInfo(), api.getInitialCards()])
+        .then(([userData, cardsData]) => {
+          setCards(cardsData)
+          setCurrentUser(userData)
+        })
+        .catch((err) => console.log(err))
+    }
+
+  }, [isLoggedIn])
 
 
 
@@ -51,13 +54,18 @@ function App() {
   function handleLoginUser({ email, password }) {
     authApi.loginUser({ email, password })
       .then((data) => {
+
         setIsLoggedIn(true);
         setHeaderEmail(email)
         localStorage.setItem("token", data.token);
         navigate('/');
 
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        setIsSuccess(false); // fail
+        setIsInfoTooltipPopupOpen(true)
+        console.log(err);
+      })
   }
 
 
@@ -77,6 +85,12 @@ function App() {
   useEffect(() => {
     tokenCheck()
   }, [])
+
+  function handleSignOut() {
+    setIsLoggedIn(false);
+    localStorage.removeItem("token");
+    navigate('/sign-in')
+  }
 
   function handleRegisterUser({ email, password }) {
     authApi.registerUser({ email, password })
@@ -177,6 +191,7 @@ function App() {
           <Header headerEmail={headerEmail}
             isOpen={isMenuOpen}
             onMenuOpen={handleMenuOpen}
+            onSignOut={handleSignOut}
           />
           <Routes>
 
@@ -192,6 +207,7 @@ function App() {
             <Route path="/sign-up" element={<Register onRegisterUser={handleRegisterUser} />} />
             <Route path="/sign-in" element={<Login onLoginUser={handleLoginUser} />} />
             <Route path="/" element={isLoggedIn ? <Navigate to="/" /> : <Navigate to="/sign-in" />} />
+            <Route path="*" element={!isLoggedIn ? <Navigate to="/sign-up" /> : <Navigate to="/sign-in" />} />
           </Routes>
           <Footer />
 
@@ -221,6 +237,8 @@ function App() {
             onClose={closeAllPopups}
             isOpen={isInfoTooltipPopupOpen}
             isSuccess={isSuccess}
+            textIsSuccessTrue={"Вы успешно зарегистрировались!"}
+            textIsSuccessFalse={"Что-то пошло не так! Попробуйте ещё раз."}
           />
         </div>
       </div>

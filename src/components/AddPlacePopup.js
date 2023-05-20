@@ -2,7 +2,7 @@ import PopupWithForm from "./PopupWithForm"
 import React from 'react';
 
 
-function AddPlacePopup({onAddPlace, isOpen, onClose, }) {
+function AddPlacePopup({ onAddPlace, isOpen, onClose, }) {
   const nameRef = React.useRef();
   const linkRef = React.useRef();
 
@@ -14,7 +14,7 @@ function AddPlacePopup({onAddPlace, isOpen, onClose, }) {
       link: linkRef.current.value,
     })
 
-    
+
   }
 
   React.useEffect(() => {
@@ -28,6 +28,7 @@ function AddPlacePopup({onAddPlace, isOpen, onClose, }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      textButton={"Создать"}
     >
       <input type="text"
         className="popup__input popup__input_type_name"
@@ -46,7 +47,7 @@ function AddPlacePopup({onAddPlace, isOpen, onClose, }) {
         ref={linkRef}
       />
       <span className="error" id="input-info-error"></span>
-      <button className="popup__button-submit" type="submit">Создать</button></PopupWithForm>
+    </PopupWithForm>
   )
 }
 

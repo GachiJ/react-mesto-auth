@@ -28,6 +28,7 @@ export default function Login({ onLoginUser }) {
     name="email"
     value={email || ''}
     onChange={handleEmailChange}
+    required
     />
     <input 
     className="authen__input" 
@@ -35,6 +36,7 @@ export default function Login({ onLoginUser }) {
     name="password" 
     value={password || ''}
     onChange={handlePasswordChange}
+    required
     />
     <button type="submit" className="authen__button">Войти</button>
     </form>
